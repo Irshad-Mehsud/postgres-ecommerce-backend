@@ -1,0 +1,11 @@
+import { Router } from 'express';
+import authMiddleware from '../middleware/authMiddleware.js';
+import authorizeRole from '../middleware/authrizeRole.js';
+import { createOrderController, getOrdersController, getOrderController, updateOrderStatusController } from '../controllers/orderController.js';
+const router = Router();
+router.use(authMiddleware);
+router.get('/', getOrdersController);
+router.get('/:id', getOrderController);
+router.post('/', createOrderController);
+router.patch('/:id/status', authorizeRole(['admin']), updateOrderStatusController);
+export default router;

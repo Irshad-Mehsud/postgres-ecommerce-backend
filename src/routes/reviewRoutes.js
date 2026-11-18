@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import authMiddleware from '../middleware/authMiddleware.js';
+import { createReviewController, getProductReviewsController, updateReviewController, deleteReviewController } from '../controllers/reviewController.js';
+const router = Router();
+router.get('/product/:productId', getProductReviewsController);
+router.use(authMiddleware);
+router.post('/', createReviewController);
+router.put('/:id', updateReviewController);
+router.delete('/:id', deleteReviewController);
+export default router;

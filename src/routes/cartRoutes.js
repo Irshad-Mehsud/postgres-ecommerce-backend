@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import authMiddleware from '../middleware/authMiddleware.js';
+import { getCartController, addCartItemController, removeCartItemController, updateCartItemController } from '../controllers/cartController.js';
+const router = Router();
+router.use(authMiddleware);
+router.get('/', getCartController);
+router.post('/items', addCartItemController);
+router.put('/items/:productId', updateCartItemController);
+router.delete('/items/:productId', removeCartItemController);
+export default router;
